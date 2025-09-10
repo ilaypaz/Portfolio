@@ -1,20 +1,22 @@
-import java.util.ArrayList;
-import java.util.List;
-
-// The Node class
 public class Node {
+    // The value stored at this node
     public int value;
-    // List of references to the next nodes (which may be at various levels)
-    // next.get(i) is the next link for level i
-    // the size of this list determines the number of levels that the current node is part of
-    public List<Node> next;
 
-    public Node(int val, int level) {
+    // Horizontal links for the doubly-linked list at a given level
+    public Node next;     // Reference to the next node on the same level
+    public Node previous; // Reference to the previous node on the same level
+
+    // Vertical links that connect the same value across levels in the skip list
+    public Node up;       // Reference to the node above (higher level)
+    public Node down;     // Reference to the node below (lower level)
+
+    // Constructor: create a node with the given value
+    // All references start as null
+    public Node(int val) {
         this.value = val;
-        this.next = new ArrayList<>(level + 1);
-        // Initialize list with nulls
-        for (int i = 0; i <= level; i++) {
-            this.next.add(null);
-        }
+        this.next = null;
+        this.previous = null;
+        this.up = null;
+        this.down = null;
     }
 }
